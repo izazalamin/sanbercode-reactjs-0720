@@ -1,103 +1,128 @@
-class Orang {
-    constructor(nama){
-      this.nama = nama
-    }
-    
-    get namaOrang(){
-      return this.nama;
-    }
-    set namaOrang(item){
-      this.nama = item
+//soal 1
+console.log("-------SOAL 1-------")
+var orang ={nama:"Asep",gender:"laki-laki",hobi:"baca buku",tahunlahir:"1992"}
+console.log("Nama : " + orang.nama)
+console.log("Jenis Kelamin : " + orang.gender)
+console.log("Hobi : " + orang.hobi)
+console.log("Tahun Lahir : " + orang.tahunlahir)
+
+//soal 2
+console.log("-------SOAL 2-------")
+var buah = [{nama: "strawberry", warna: "merah", biji: "tidak",harga:"9000"}, {nama: "jeruk", warna: "oranye", biji: "ada",harga:"8000"}, {nama: "semangka", warna: "hijau dan merah", biji: "ada",harga:"10000"},{nama: "pisang", warna: "kuning", biji: "tidak",harga:"5000"}]
+
+var arrayBuahFilter = buah.filter(function(item){
+  return item.nama == "strawberry";
+})
+console.debug(arrayBuahFilter)
+
+//soal 3
+console.log("-------SOAL 3-------")
+
+var dataFilm= []
+
+var addFilm = {
+  nama : "Mission Immposible",
+  durasi: " 2.2 jam",
+  genre : "action",
+  tahun:"2015"
+}
+function tambah(addFilm){
+  return addFilm
+  
+}
+
+dataFilm.push(addFilm)
+console.log(dataFilm);
+
+//soal 4
+console.log("---------SOAL 4-------")
+
+//release 0
+class Animal {
+  constructor(name,legs,cold_blooded){
+    this.name=name;
+    this.legs=4;
+    this.cold_blooded=false;
+  }
+ get namaDomba(){
+    return this.name;
+   return this.legs;
+   return this.cold_blooded;
+  }
+  set namaDomba(item){
+    this.name = item;
+    this.legs= item;
+    this.cold_blooded=item;
+  }
+}
+var sheep = new Animal("shaun");
+ 
+console.log(sheep.name) // "shaun"
+console.log(sheep.legs) // 4
+console.log(sheep.cold_blooded) // false
+
+//release 1
+class Ape extends Animal {
+  constructor(name,legs){
+    super(name);
+    this.legs = 2;
+  }
+  yell(){
+    return "auoo";
+  }
+}
+class Frog extends Animal {
+  constructor(name,legs){
+    super(name);
+  }
+  jump(){
+    return "hop hop";
+  }
+}
+var sungokong = new Ape("kera sakti")
+sungokong.yell() // "Auooo"
+console.log(sungokong);
+ 
+var kodok = new Frog("buduk")
+kodok.jump() // "hop hop" 
+console.log(kodok);
+
+//soal 5
+console.log("---------SOAL 5-------")
+class Clock{
+  constructor({template}){
+    {
+      var timer;
+      function render() {
+    var date = new Date();
+
+    var hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    var mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    var secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+
+    var output = template
+      .replace('h', hours)
+      .replace('m', mins)
+      .replace('s', secs);
+
+    console.log(output);
+  }
+
+  this.stop = function() {
+    clearInterval(timer);
+  };
+
+  this.start = function() {
+    render();
+    timer = setInterval(render, 1000);
+  };
     }
   }
-  var orang1= new Orang("Asep")
-  orang1.namaOrang= "Budi"
-  console.log(orang1)
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  /*var people = [
-                {nama:"asep",tinggi:165 },
-                {nama:"budi",tinggi:170 },
-                {nama:"john",tinggi:189 }
-               ]
-  //console.log(orang.nama + "punya tinggi" + orang.tinggi)
-  var iteration = 1
-  people.forEach(function(item){
-    console.log(iteration + " " + item.nama)
-    iteration++;
-  })
-  
-  var arr =people.map(function(item){
-  return item.tinggi
-  })
-  console.log(arr)
-  
-  var filterPeople = people.filter(function(item){
-    return item.tinggi >= 170
-  })
-  console.log(filterPeople)*/
-  
-  /*class Orang {
-    constructor(varNama,varTinggi){
-    this.nama = varNama
-    this.tinggi = varTinggi
-    }
-    //method huruf kecil
-    membaca(buku){
-      return "saya membaca buku" + buku;
-    }
-    //static method yang dilakuin sebelom bikin objek baru
-    static halo(){
-      return "halo";
-    }
-  }
-  
-  class Dosen extends Orang{
-    constructor(varNama){
-      super(varNama)
-      this.pekerjaan = "Dosen"
-    }
-  }
-  var dosen1 = new Dosen()
-  console.log(dosen1)
-  /*var orang1 = new Orang();
-  
-  console.log(orang1.membaca(" Matematika"))
-  console.log(Orang.halo())*/
-  
+}
+var clock = new Clock({template: 'h:m:s'});
+clock.start(); 
